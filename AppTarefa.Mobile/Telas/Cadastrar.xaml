@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppTarefa.Mobile.Telas.Cadastrar"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Cadastrar"
+    BackgroundColor="{StaticResource Fundo2}"
+    NavigationPage.HasNavigationBar="False">
+
+    <Frame
+        Margin="30"
+        BackgroundColor="{StaticResource Fundo1}"
+        BorderColor="Transparent"
+        CornerRadius="10"
+        HasShadow="True">
+        <StackLayout Spacing="5">
+            <StackLayout Orientation="Horizontal">
+                <Label HorizontalOptions="FillAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontFamily="MontSerratRegular"
+                                FontSize="Subtitle"
+                                Text="Criar"
+                                TextColor="{StaticResource Black}" />
+                            <Span Text="&#10;" />
+                            <Span
+                                FontFamily="MontSerratBold"
+                                FontSize="Title"
+                                Text="Tarefa"
+                                TextColor="{StaticResource Black}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label
+                    Padding="20,0,0,20"
+                    FontFamily="MontSerratRegular"
+                    FontSize="Title"
+                    HorizontalOptions="End"
+                    Text="X"
+                    TextColor="{StaticResource Black}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="FecharModal" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+            <!--#region CampoData-->
+            <Frame Padding="0" CornerRadius="0">
+                <Grid Padding="15,0" ColumnDefinitions="2*,3*,*">
+                    <Label Style="{StaticResource TituloCampo}" Text="Data" />
+                    <Label
+                        x:Name="lblDataSelecionada"
+                        Grid.Column="1"
+                        Style="{StaticResource RespostaCampo}" />
+                    <Image
+                        Grid.Column="2"
+                        Source="calendar"
+                        VerticalOptions="Center"
+                        WidthRequest="20" />
+                    <DatePicker
+                        x:Name="Data"
+                        Grid.Column="2"
+                        DateSelected="DataSelecionadaAction"
+                        Style="{StaticResource EntradaSelecaoDataCampo}"
+                        WidthRequest="50" />
+                </Grid>
+            </Frame>
+            <!--#endregion-->
+
+            <!--#region CampoTime-->
+            <Frame Padding="0" CornerRadius="0">
+                <Grid Padding="15,0" ColumnDefinitions="3*,*,0.5*,*">
+                    <Label Style="{StaticResource TituloCampo}" Text="Horário" />
+                    <TimePicker
+                        x:Name="HorarioInicial"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource EntradaSelecaoTempoCampo}" />
+                    <!--
+                    <Label
+                        Style="{StaticResource SeparadorCampo}"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="Inicio" />
+                    -->
+                    <Label
+                        x:Name="lblHorarioInicial"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Style="{StaticResource SeparadorCampo}"
+                        Text="-" />
+                    <TimePicker
+                        x:Name="HorarioFinal"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Style="{StaticResource EntradaSelecaoTempoCampo}" />
+                    <!--
+                    <Label
+                        Style="{StaticResource SeparadorCampo}"
+                        x:Name="lblHorarioFinal"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Text="Fim" />
+                    -->
+                </Grid>
+            </Frame>
+            <!--#endregion-->
+
+            <Frame Padding="15,0" CornerRadius="0">
+                <Entry
+                    x:Name="Nome"
+                    Placeholder="Tarefa"
+                    Style="{StaticResource EntradaCampo}" />
+            </Frame>
+            <Frame Padding="15,0" CornerRadius="0">
+                <Editor
+                    x:Name="Nota"
+                    Placeholder="Nota"
+                    Style="{StaticResource EntradaEditorCampo}" />
+            </Frame>
+
+            <Grid ColumnDefinitions="*,*,*">
+                <RadioButton
+                    x:Name="rbBaixa"
+                    Grid.Column="0"
+                    CheckedChanged="RBBaixa_CheckedChanged"
+                    Content="Baixa"
+                    TextColor="{StaticResource PropriedadeBaixa}" />
+                <RadioButton
+                    x:Name="rbMedia"
+                    Grid.Column="1"
+                    CheckedChanged="RBBaixa_CheckedChanged"
+                    Content="Media"
+                    TextColor="{StaticResource PropriedadeNormal}" />
+                <RadioButton
+                    x:Name="rbAlta"
+                    Grid.Column="2"
+                    CheckedChanged="RBBaixa_CheckedChanged"
+                    Content="Alta"
+                    TextColor="{StaticResource PropriedadeAlta}" />
+            </Grid>
+
+            <Button
+                Clicked="SalvarTarefa"
+                Style="{StaticResource BotaoEscrito}"
+                Text="Adicionar" />
+        </StackLayout>
+    </Frame>
+
+</ContentPage>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AppTarefa.Mobile.Telas.Listar"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Conversor="clr-namespace:AppTarefa.Mobile.Conversores"
+    Title="Listar"
+    BackgroundColor="{StaticResource Fundo1}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Conversor:TachadoConversor x:Key="Tachado" />
+            <Conversor:PrioridadeConversor x:Key="Prioridade" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid
+        ColumnDefinitions="*"
+        RowDefinitions="*,5*"
+        RowSpacing="0">
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            ColumnDefinitions="2*,*"
+            RowDefinitions="*">
+            <Label Margin="20,40,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            x:Name="lblDiaDaSemana"
+                            FontFamily="MontSerratRegular"
+                            FontSize="Title"
+                            TextColor="{StaticResource Black}" />
+                        <Span Text="&#10;" />
+                        <Span
+                            x:Name="lblQuantidadeTarefas"
+                            FontFamily="MontSerratLight"
+                            FontSize="Subtitle"
+                            TextColor="{StaticResource Gray}" />
+                        <Span
+                            FontFamily="MontSerratLight"
+                            FontSize="Subtitle"
+                            Text=" Tarefas"
+                            TextColor="{StaticResource Gray}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Frame
+                Grid.Column="1"
+                Margin="0,20,10,20"
+                Padding="0"
+                BackgroundColor="{StaticResource Primary}"
+                BorderColor="Transparent"
+                CornerRadius="20"
+                HasShadow="False">
+                <Grid ColumnDefinitions="*" RowDefinitions="*">
+                    <Label Style="{StaticResource TextoCirculo}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    x:Name="lblDia"
+                                    FontFamily="MontSerratMedium"
+                                    FontSize="Title" />
+                                <Span Text="&#10;" />
+                                <Span
+                                    x:Name="lblMes"
+                                    FontFamily="MontSerratLight"
+                                    FontSize="Subtitle" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <DatePicker
+                        x:Name="DPCalendario"
+                        DateSelected="DateSelectedAction"
+                        Style="{StaticResource EntradaSelecaoDataCampo}"
+                        WidthRequest="500" />
+                </Grid>
+            </Frame>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0">
+            <BoxView CornerRadius="30,30,0,0" Color="{StaticResource White}" />
+
+            <Grid
+                Margin="20,30"
+                ColumnDefinitions="*"
+                RowDefinitions="*">
+
+                <CollectionView x:Name="CVListaDeTarefas" EmptyView="Nenhuma Tarefa">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView BackgroundColor="{StaticResource White}">
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="{StaticResource VermelhoExclusao}"
+                                            CommandParameter="{Binding .}"
+                                            Invoked="BtnExcluir"
+                                            Text="Excluir" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid Padding="0,10" ColumnDefinitions="*, 5*">
+                                    <CheckBox
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        CheckedChanged="CheckedChangedAction"
+                                        IsChecked="{Binding Finalizada}" />
+                                    <StackLayout x:Name="slTarefaDetalhe" Grid.Column="1">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="BtnVisualizar" />
+                                        </StackLayout.GestureRecognizers>
+                                        <Label
+                                            FontFamily="MontSerratBold"
+                                            FontSize="Subtitle"
+                                            Text="{Binding Nome}"
+                                            TextColor="{StaticResource Black}" />
+                                        <StackLayout Orientation="Horizontal" Spacing="5">
+                                            <Ellipse
+                                                Fill="{Binding Prioridade, Converter={StaticResource Prioridade}}"
+                                                HeightRequest="15"
+                                                WidthRequest="15" />
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontFamily="MontSerratLight"
+                                                            FontSize="Caption"
+                                                            Text="{Binding HorarioInicial, StringFormat=\{0:hh\\:mm\}}"
+                                                            TextColor="{StaticResource Gray}" />
+                                                        <Span
+                                                            FontFamily="MontSerratLight"
+                                                            FontSize="Caption"
+                                                            Text=" - "
+                                                            TextColor="{StaticResource Gray}" />
+                                                        <Span
+                                                            FontFamily="MontSerratLight"
+                                                            FontSize="Caption"
+                                                            Text="{Binding HorarioFinal, StringFormat=\{0:hh\\:mm\}}"
+                                                            TextColor="{StaticResource Gray}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <!--<Label
+                                        x:Name="lblTarefaDetalhe"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        LineHeight="1.2">-->
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Button
+                    Clicked="BtnCadastrar"
+                    Style="{StaticResource BotaoCircular}"
+                    Text="+" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>

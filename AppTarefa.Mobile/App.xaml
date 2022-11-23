@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Application
+    x:Class="AppTarefa.Mobile.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AppTarefa.Mobile">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Color x:Key="PropriedadeBaixa">#00ABFF</Color>
+            <Color x:Key="PropriedadeNormal">#E0E00C</Color>
+            <Color x:Key="PropriedadeAlta">#FF6969</Color>
+
+            <!--#region Label-->
+            <Style x:Key="TituloCampo" TargetType="Label">
+                <Setter Property="FontFamily" Value="MontSerratRegular" />
+                <Setter Property="FontSize" Value="Subtitle" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="RespostaCampo" TargetType="Label">
+                <Setter Property="FontFamily" Value="MontSerratLight" />
+                <Setter Property="FontSize" Value="Subtitle" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="TextColor" Value="{StaticResource Gray}" />
+                <Setter Property="TranslationX" Value="-10" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="SeparadorCampo" TargetType="Label">
+                <Setter Property="FontFamily" Value="MontSerratRegular" />
+                <Setter Property="FontSize" Value="Subtitle" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource Gray}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="TituloVisualizar" TargetType="Label">
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="FontFamily" Value="MontSerratBold" />
+                <Setter Property="FontSize" Value="Title" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="TextoVisualizar" TargetType="Label">
+                <Setter Property="FontFamily" Value="MontSerratRegular" />
+                <Setter Property="FontSize" Value="Subtitle" />
+            </Style>
+
+            <Style
+                x:Key="TextoPrimarioVisualizar"
+                BasedOn="{StaticResource TextoVisualizar}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+            </Style>
+
+            <Style
+                x:Key="TextoSecundarioVisualizar"
+                BasedOn="{StaticResource TextoVisualizar}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Gray}" />
+            </Style>
+
+            <Style x:Key="TextoTituloNotaVisualizar" TargetType="Label">
+                <Setter Property="FontFamily" Value="MontSerratBold" />
+                <Setter Property="FontSize" Value="Title" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+            </Style>
+
+            <Style x:Key="TextoCorpoNotaVisualizar" TargetType="Label">
+                <Setter Property="FontFamily" Value="MontSerratregular" />
+                <Setter Property="FontSize" Value="Subtitle" />
+                <Setter Property="TextColor" Value="{StaticResource Black}" />
+            </Style>
+
+            <Style x:Key="TextoCirculo" TargetType="Label">
+                <Setter Property="Margin" Value="0,20,0,20" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+            </Style>
+
+            <!--#endregion-->
+
+            <!--#region CamposDeEntrada (Entry, Editor, TimePicker, DatePicker)-->
+            <Style x:Key="BaseEntradaCampo" TargetType="InputView">
+                <Setter Property="TextColor" Value="{StaticResource Gray}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource Black}" />
+            </Style>
+
+            <Style
+                x:Key="EntradaCampo"
+                BasedOn="{StaticResource BaseEntradaCampo}"
+                TargetType="Entry">
+                <Setter Property="FontFamily" Value="MontSerratRegular" />
+                <Setter Property="FontSize" Value="Subtitle" />
+            </Style>
+
+            <Style
+                x:Key="EntradaEditorCampo"
+                BasedOn="{StaticResource BaseEntradaCampo}"
+                TargetType="Editor">
+                <Setter Property="FontFamily" Value="MontSerratRegular" />
+                <Setter Property="FontSize" Value="Subtitle" />
+                <Setter Property="HeightRequest" Value="100" />
+                <Setter Property="MaximumHeightRequest" Value="100" />
+                <Setter Property="MinimumHeightRequest" Value="100" />
+                <Setter Property="AutoSize" Value="TextChanges" />
+            </Style>
+
+            <Style x:Key="EntradaSelecaoTempoCampo" TargetType="TimePicker">
+                <Setter Property="Format" Value="t" />
+                <Setter Property="TextColor" Value="{StaticResource Gray}" />
+            </Style>
+
+            <Style x:Key="EntradaSelecaoDataCampo" TargetType="DatePicker">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Opacity" Value="0" />
+                <Setter Property="TextColor" Value="Transparent" />
+            </Style>
+            <!--#endregion-->
+
+            <!--#region Botao-->
+            <Style x:Key="BotaoEscrito" TargetType="Button">
+                <Setter Property="Padding" Value="20,10" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="VerticalOptions" Value="EndAndExpand" />
+            </Style>
+
+            <Style x:Key="BotaoCircular" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="CornerRadius" Value="50" />
+                <Setter Property="FontSize" Value="36" />
+                <Setter Property="HeightRequest" Value="75" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="WidthRequest" Value="75" />
+            </Style>
+            <!--#endregion-->
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
